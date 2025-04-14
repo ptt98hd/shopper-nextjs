@@ -1,0 +1,54 @@
+{
+	"marketing": {
+		"layout": {
+			"header": {
+				"home": "Trang chủ",
+				"about": "Giới thiệu",
+				"contact": "Liên hệ",
+				"login": "Đăng nhập",
+				"signup": "Đăng ký"
+			},
+			"footer": {
+				"copyright": "Tất cả các quyền được bảo lưu",
+				"privacy-policy": "Chính sách bảo mật",
+				"terms-of-service": "Điều khoản dịch vụ",
+				"cookies-policy": "Chính sách cookie",
+				"hero": "Điểm đến duy nhất cho các sản phẩm chất lượng và trải nghiệm mua sắm đặc biệt.",
+				"quick-links": "Liên kết nhanh",
+				"home": "Trang chủ",
+				"about": "Giới thiệu",
+				"contact": "Liên hệ",
+				"contact-us": "Liên hệ với chúng tôi",
+				"subscribe-title": "Đăng ký",
+				"subscribe-message": "Cập nhật những ưu đãi và khuyến mãi mới nhất từ chúng tôi.",
+				"subscribe-placeholder": "Nhập email của bạn",
+				"subscribe-button": "Đăng ký"
+			},
+			"floating": {
+				"settings": {
+					"title": "Tùy chọn",
+					"theme": {
+						"title": "Giao diện",
+						"light": "Sáng",
+						"dark": "Tối",
+						"system": "Hệ thống"
+					},
+					"language": {
+						"title": "Ngôn ngữ",
+						"english": "Tiếng Anh",
+						"vietnamese": "Tiếng Việt"
+					},
+					"close": "Đóng"
+				}
+			}
+		},
+		"home-page": {
+			"hero": {
+				"title": "Chào mừng đến với Shopper",
+				"description": "Điểm đến duy nhất cho các sản phẩm chất lượng và trải nghiệm mua sắm đặc biệt.",
+				"shop-now": "Mua ngay",
+				"sell-now": "Bán ngay"
+			}
+		}
+	}
+}

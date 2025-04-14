@@ -1,0 +1,54 @@
+{
+	"marketing": {
+		"layout": {
+			"header": {
+				"home": "Home",
+				"about": "About",
+				"contact": "Contact",
+				"login": "Login",
+				"signup": "Signup"
+			},
+			"footer": {
+				"copyright": "All rights reserved",
+				"privacy-policy": "Privacy Policy",
+				"terms-of-service": "Terms of Service",
+				"cookies-policy": "Cookie Policy",
+				"hero": "Your one-stop destination for quality products and exceptional shopping experience.",
+				"quick-links": "Quick Links",
+				"home": "Home",
+				"about": "About",
+				"contact": "Contact",
+				"contact-us": "Contact Us",
+				"subscribe-title": "Subscribe to our newsletter",
+				"subscribe-message": "Stay updated with our latest offers and promotions.",
+				"subscribe-placeholder": "Enter your email",
+				"subscribe-button": "Subscribe"
+			},
+			"floating": {
+				"settings": {
+					"title": "Preferences",
+					"theme": {
+						"title": "Theme",
+						"light": "Light",
+						"dark": "Dark",
+						"system": "System"
+					},
+					"language": {
+						"title": "Language",
+						"english": "English",
+						"vietnamese": "Vietnamese"
+					},
+					"close": "Close"
+				}
+			}
+		},
+		"home-page": {
+			"hero": {
+				"title": "Welcome to Shopper",
+				"description": "Your one-stop destination for quality products and exceptional shopping experience.",
+				"shop-now": "Shop Now",
+				"sell-now": "Sell Now"
+			}
+		}
+	}
+}
