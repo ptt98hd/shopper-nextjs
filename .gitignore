@@ -1,5 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 /.pnp
@@ -11,6 +9,10 @@
 !.yarn/versions
 /bun.lock
 /package-lock.json
+
+# prisma
+/src/generated/
+/prisma/migrations/
 
 # testing
 /coverage
