@@ -104,15 +104,16 @@ model Value {
 }
 
 model Variant {
-  id        String   @id @default(uuid())
-  price     Decimal
-  stock     Decimal
-  unit      String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  productId String
-  product   Product  @relation(fields: [productId], references: [id])
-  values    Value[]
+  id          String        @id @default(uuid())
+  price       Decimal
+  stock       Decimal
+  unit        String
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  productId   String
+  product     Product       @relation(fields: [productId], references: [id])
+  values      Value[]
+  OrderDetail OrderDetail[]
 }
 
 // Order
@@ -145,14 +146,40 @@ enum OrderStatus {
 }
 
 model Order {
-  id        String      @id @default(uuid())
-  status    OrderStatus @default(PENDING)
-  createAt  DateTime    @default(now())
-  updateAt  DateTime    @updatedAt
-  addressId String
-  address   Address     @relation(fields: [addressId], references: [id])
+  id           String        @id @default(uuid())
+  status       OrderStatus   @default(PENDING)
+  createAt     DateTime      @default(now())
+  updateAt     DateTime      @updatedAt
+  addressId    String
+  address      Address       @relation(fields: [addressId], references: [id])
+  orderDetails OrderDetail[]
+  Transaction  Transaction?
 }
 
 model OrderDetail {
-  id String @id @default(uuid())
+  id        String  @id @default(uuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id])
+  variantId String
+  variant   Variant @relation(fields: [variantId], references: [id])
+  quantity  Decimal @default(1)
+  price     Decimal
+}
+
+enum PaymentMethod {
+  CASH
+  E_BANKING
+  E_WALLET
+  CREDIT_CARD
+  DEBIT_CARD
+}
+
+model Transaction {
+  id        String        @id @default(uuid())
+  total     Decimal
+  method    PaymentMethod
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  orderId   String        @unique
+  order     Order         @relation(fields: [orderId], references: [id])
 }
