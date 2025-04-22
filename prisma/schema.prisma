@@ -8,16 +8,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Auth
 model User {
-  id        String   @id @default(uuid())
+  id        String    @id @default(uuid())
   name      String
-  phone     String   @unique
-  email     String   @unique
+  phone     String    @unique
+  email     String    @unique
   password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   roles     Role[]
   shops     Shop[]
+  Address   Address[]
 }
 
 model Role {
@@ -37,21 +39,23 @@ model Permission {
   roles     Role[]
 }
 
+// Shop
 model Shop {
-  id          String   @id @default(uuid())
-  name        String   @unique
+  id          String    @id @default(uuid())
+  name        String    @unique
   title       String
   description String
   address     String
   avatar      String?
   background  String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  userId      String?
-  User        User?    @relation(fields: [userId], references: [id])
-  // Product     Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  userId      String
+  user        User      @relation(fields: [userId], references: [id])
+  products    Product[]
 }
 
+// Product
 model Category {
   id        String     @id @default(uuid())
   name      String     @unique
@@ -61,4 +65,94 @@ model Category {
   parentId  String?
   parent    Category?  @relation("ParentChildens", fields: [parentId], references: [id])
   children  Category[] @relation("ParentChildens")
+  products  Product[]
+}
+
+model Product {
+  id          String    @id @default(uuid())
+  name        String
+  description String
+  isDeleted   Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  categoryId  String
+  category    Category  @relation(fields: [categoryId], references: [id])
+  shopId      String
+  shop        Shop      @relation(fields: [shopId], references: [id])
+  options     Option[]
+  variants    Variant[]
+}
+
+model Option {
+  id        String  @id @default(uuid())
+  name      String
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  values    Value[]
+
+  @@unique([productId, name])
+}
+
+model Value {
+  id       String    @id @default(uuid())
+  value    String
+  optionId String
+  option   Option    @relation(fields: [optionId], references: [id])
+  variants Variant[]
+
+  @@unique([optionId, value])
+}
+
+model Variant {
+  id        String   @id @default(uuid())
+  price     Decimal
+  stock     Decimal
+  unit      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+  values    Value[]
+}
+
+// Order
+model Address {
+  id        String   @id @default(uuid())
+  receiver  String
+  phone     String
+  province  String
+  city      String
+  district  String
+  ward      String
+  street    String
+  detail    String
+  default   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  orders    Order[]
+
+  @@unique([userId, receiver, phone, province, city, district, ward, street, detail])
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+model Order {
+  id        String      @id @default(uuid())
+  status    OrderStatus @default(PENDING)
+  createAt  DateTime    @default(now())
+  updateAt  DateTime    @updatedAt
+  addressId String
+  address   Address     @relation(fields: [addressId], references: [id])
+}
+
+model OrderDetail {
+  id String @id @default(uuid())
 }
