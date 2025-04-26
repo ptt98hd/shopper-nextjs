@@ -1,9 +1,14 @@
 import { Container } from "@/components/layout/container";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { metadata } from "../layout";
+
+metadata.title = "Home | Shopper";
+// metadata.
 
 export default function Home() {
 	const t = useTranslations("marketing.home-page");
+
 	return (
 		<Container className="py-12">
 			<div className="space-y-6 text-center my-auto">
