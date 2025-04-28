@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   postgres:
     image: postgres:latest
@@ -11,7 +9,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
-      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+      - '${POSTGRES_PORT}:${POSTGRES_PORT}'
     restart: unless-stopped
 
   minio:
@@ -23,8 +21,8 @@ services:
     volumes:
       - minio_data:/data
     ports:
-      - "${MINIO_API_PORT}:${MINIO_API_PORT}"
-      - "${MINIO_CONSOLE_PORT}:${MINIO_CONSOLE_PORT}"
+      - '${MINIO_API_PORT}:${MINIO_API_PORT}'
+      - '${MINIO_CONSOLE_PORT}:${MINIO_CONSOLE_PORT}'
     command: server /data --console-address ":${MINIO_CONSOLE_PORT}"
     restart: unless-stopped
 
